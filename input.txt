@@ -1,0 +1,334 @@
+CP103: Principles of Computer Programming
+Introduce non Computer Science students to basic computer programming techniques. Emphasis is on problem-solving and structured program design methodologies. Programming projects are implemented in a widely used high-level language.
+3 lecture hours, 2.5 lab hours
+Credit: 0.50
+Exclusion: CP104; registration in Honours Computer Science or Honours Data Science programs
+Note: Cannot be used as credit for the Minor in Computer Science, or any Computer Science or Data Science program
+
+CP104: Introduction to Programming
+An introductory course designed to familiarize the student with modern software development techniques. Emphasis is on problem-solving and structured program design methodologies. Programming projects are implemented in a widely used high-level language.
+3 lecture hours, 2.5 lab hours
+Credit: 0.50
+
+CP164: Data Structures I
+Introduction to the study of data structures and their applications. Recursion, searching, sorting. Queues, stacks, heaps. Introduction to the analysis of algorithms, big "O" notation.
+3 lecture hours, 2.5 lab hours
+Credit: 0.50
+Prerequisite: CP104
+Exclusion: CP114
+
+CP202: Website Design
+This course provides an in depth understanding of website design and administration, short of server-side programming. Emphasis is on standards, good design practices, accessibility, and tools. By the end of the course students should have the skills to administer a website, deal with security issues, design readable, informative, attractive and accessible web pages that fit current standards, and apply a logical and consistent navigational scheme to an entire website.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP102 or CP104
+Exclusion: Registration in BA or BSc programs in computer science or data science.
+
+CP212: Windows Application Programming
+This course is designed for students who have a basic understanding of spreadsheets, word processors, and databases as well as introductory programming experience. The course introduces methods to automate repetitive tasks and create user-friendly applications in spreadsheets, word processors, and databases using the powerful macro language, Visual Basic for Applications (VBA). Topics include: a review of programming constructs such as data types, looping, conditional statements, and arrays; the design of graphical interfaces with the typical "look and feel" of Windows software; the design of dialog boxes with controls and eventhandling code that responds to user input; automating tasks; consolidating data; providing userfriendly reports.
+3 lecture hours, 1 lab hour
+Credit: 0.50
+Prerequisite: CP102 and previous programming experience, or CP104
+
+CP213: Introduction to Object-Oriented Programming
+Fundamentals of object-oriented programming, classes, subclasses, inheritance, references, overloading, event-driven and concurrent programming, using modern application programming interface. The language Java will be used.
+3 lecture hours, 1 lab hours
+Credit: 0.50
+Prerequisite: CP164 (or CP114)
+
+CP214: Discrete Structures for Computer Science
+Finite and discrete algebraic structures relating to computers: sets, functions, relations. Machine-oriented logic. Topics include: propositional and predicate calculus, Boolean algebra, combinatorial counting (including Pigeonhole principle, permutations and combinations), recurrence equations, applications of recurrence equations in sorting algorithms, relations (including equivalence relations, partial orders), algorithms to generate permutations and combinations, induction and recursive programs, correctness proofs for both recursive and iterative program constructions, countable and uncountable sets, Cantor's theorem, introduction to graph theory and graph algorithms.
+3 lecture/discussion hours
+Credit: 0.50
+Prerequisite: CP164
+
+CP216: Introduction to Microprocessors
+A comprehensive study of a current commercial microprocessor, its architecture and assembly language. Emphasis on (1) the relationship between architecture, assembly language and system operation, and (2) the relationship between assembly language, high level languages and operating systems.
+3 lecture hours, 1 lab hour
+Credit: 0.50
+Prerequisite: CP220/PC220 (or CP120/PC120) and CP164 (or CP114)
+
+CP220: Digital Electronics
+Introduction to digital logic: logic gates, combinational circuit analysis using Boolean algebra and Karnaugh maps, number systems and codes, minimization techniques applied to combinational logic systems; flip-flops, multivibrators, counters and shift registers.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP164 and registration in Computer Science.
+Exclusion: CP120/PC120
+Cross-Listed: PC220
+
+CP221: Analog Electronics I
+DC and AC circuit theory, complex impedance, resonance, Norton and Thevenin Theorems, semiconductor diodes, bipolar transistors, the use of transistors for the construction of logic gates.
+3 lecture hours, 2 lab hours
+Credit: 0.50
+Prerequisite: CP220/PC220 (recommended PC212)
+Cross-Listed: PC221
+
+CP264: Data Structures II
+A continuation of the study of data structures and their applications using C. Linked lists, binary search trees, balanced search trees. Hashing, collision-avoidance strategies. A continuation of basic algorithm analysis.
+3 lecture hours, 1 lab hour
+Credit: 0.50
+Prerequisite: CP164 (or CP114)
+Exclusion: CP217
+
+CP310: Special Topics
+A detailed examination of a field or topic of interest not covered by the regular program. Irregular course.
+3 lecture hours
+Credit: 0.50
+Prerequisite: Permission of the department.
+
+CP312: Algorithm Design and Analysis I
+Analysis of the best, average, and worse case behaviors of algorithms. Algorithmic strategies: brute force algorithms, greedy algorithms, divide-and-conquer, branch and bound, backtracking. Fundamental computing algorithms: O (n log n) sorting, hash table, binary trees, depth- and breadth-first search of graphs.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP264 or (CP114 and CP213); and CP214 or MA238
+
+CP315: Introduction to Scientific Computation
+An introduction to scientific computation, with substantial use of scientific software, such as Maple and Matlab. Scientific problems and models from different disciplines are considered. Numerical methods introduced in this course include interpolation, curve fitting, solving (systems of) linear and nonlinear equations, eigenvalue problems, integration and solving ordinary and partial differential equations.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP104, MA103, MA122, MA205
+Exclusion: MA307, MA371
+Cross-Listed: as PC315
+
+CP316: Microprocessor Systems & Interfacing
+Interfacing a microprocessor or microcontroller with external devices for real-time hardware control. Microcontroller hardware and software in real time applications; serial and parallel IO; timing generation; priority interrupt structures and servicing; bus timing. Interpretation and use of industry documentation and data sheets.
+3 lecture hours, 2.5 lab hours
+Credit: 0.50
+Prerequisite: CP216, CP320/PC320 (or CP300/PC300)
+
+CP317: Software Engineering
+Discussion of software development activities, including software process models, analysis, design, implementation, testing, project management and advanced topics. Both traditional and object-oriented methods are considered.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP213 or CP264 (or CP217)
+
+CP31NINE: Digital System Design
+Logic families and interfacing considerations for logic devices, VHDL; implementation techniques for combinational and sequential logic; introduction to finite state machines and design methodologies for synchronous and asynchronous sequential circuits; hazards, cycles and races; operation and interfacing of memory devices.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP164 (or CP114), CP220/PC220 (or CP120/PC120)
+Cross-Listed: as PC31NINE
+
+CP320: Physical Computing: Digital Interaction with the Analog World
+Design and construction of computational systems that interact with the physical world for applications such as home or experiment automation. Basics of electrical circuits, reading from analog and digital sensors, controlling analog and digital actuators, single board computers such as Arduino or Raspberry PI, analog components including diodes, transistors and operational amplifiers.
+3 lecture hours, 3 lab hours
+Credit: 0.50
+Prerequisite: CP164 (or CP114), CP220/PC220 (or CP120/PC120)
+Exclusion: CP300/PC300
+Cross-Listed: PC320
+
+CP321: Data Visualization
+This course will provide participants an overview on how to visualize data to present large data sets in a meaningful way. Rigorous policy analysis must be based on evidence, but once you have gathered the evidence, it can be overwhelming to figure out how to present data in a meaningful way. This course offers instruction how to distill and interpret large amounts of information to highlight the key information. Learn to unlock the power of data through effective data visualization. Explains how to select the appropriate data sets for analysis, transform the data sets into usable formats, and verify that the sets are error-free. Review how to choose the right model for the specific type of analysis project, how to analyze the model, and present the results for decision making. Show how to solve numerous business problems by applying various tools and techniques. Data visualization and visual data mining tools, and real-world success stories using visual data mining.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP213
+
+CP322: Machine Learning
+With the rise of data science and big data fields, machine learning has gained further recognition as the key driver behind the successful advance of these fields. However, many recent entrants to the field can only utilize the variety of machine learning algorithms as black boxes. This course aims to empower students to effectively use and understand the primary approaches so as to be able to modify them for specific uses. Our focus is less on theory and more on practice. Students engage in hands-on implementation of some of the fundamental algorithms such as predictive modeling and clustering applied to real, open-ended problems.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP312
+
+CP340: E-commerce
+This course deals with the development of the Internet and its impacts on business transactions. The course explains key concepts and trends associated with e-commerce and online business. Topics include the role of the Internet, electronic marketplace, online marketing, web analytics, privacy and security issues and electronic payments.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP213
+
+CP351: Quantum Computing
+Quantum computing offers the possibility of dramatic advances in computational power compared to the best computers we have today. In addition, novel quantum protocols such as teleportation and quantum cryptography have already been demonstrated. This course provides an introduction to this exciting and cutting-edge field. Topics include an overview of quantum theory, quantum algorithms, teleportation, secure quantum communication, Shor's factoring algorithm, Grover's search protocol, quantum error correction and the latest state-of-the-art experiments. No prior knowledge of quantum mechanics is required.
+3 lecture/discussion hours
+Credit: 0.50
+Prerequisite: MA122 and registration status: Year 3 or Year 4, majoring in physics, computer science, mathematics or chemistry
+Exclusion: CP310A/PC310A
+Cross-Listed: PC351
+
+CP363: Database I
+Introduction to database systems. Topics include data models, query languages, database design, recovery and concurrency, integrity and security.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP164 (or CP114)
+
+CP364: Data Communications and Networks
+Data communication fundamentals, with an emphasis on the physical layer, and telecommunication networks, with an emphasis on the architectures and protocols will be studied. Topics include transmission media, digital data transmission, architectures of telecommunication networks.
+3 lecture hours, 1.5 lab hours
+Credit: 0.50
+Prerequisite: CP320/PC320 (or CP120/PC120 and CP200/PC200), PC212
+Cross-Listed: as PC364
+
+CP367: Introduction to System Programming
+Contemporary ideas and techniques in system programming using the C language. Introduction to the Unix operating system and Unix commands. Directories and files, device control, signal handling, process intercommunication, shell programming in Unix. Using and implementing software tools: filters, pipelines, sorts, text patterns and others.
+3 lecture hours, 1 lab hour
+Credit: 0.50
+Prerequisite: CP264
+Exclusion: CP217
+
+CP372: Computer Networks
+Introduction to computer communication networks. The OSI reference model. Protocols for error and flow control. Medium access protocols. Routing and congestion control. Internet architecture and protocols. Unix network programming.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP213, either CP264 or CP386
+
+CP373: Ethics and Professional Practice in Computer Science
+Introduction to ethics, computer reliability and safety, privacy, computer crime, intellectual property, impact of computers on work and society. Assessment includes written assignments and oral presentations.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP264
+
+CP374: Distributed Systems
+This course teaches the abstractions, design and implementation techniques that enable the building of fast, scalable, fault-tolerant distributed systems. Topics include synchronization, network programming, consistency, fault tolerance, consensus, security, distributed storage systems, and MapReduce.
+3 lecture/discussion hours
+Credit: 0.50
+Prerequisite: CP213
+Corequisite: CP372, CP386
+
+CP386: Operating Systems
+Topics include operating system services, file systems, CPU scheduling, memory management, virtual memory, disk scheduling, deadlocks, concurrent processes, protection and distributed systems.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP216 and CP264 (or CP217)
+
+CP3NINE5: Directed Studies
+A detailed study of an aspect of computer science or computer electronics not available through the regular program. Irregular course.
+Credit: 0.50
+Prerequisite: Registration status: Year 3 or 4 of an Honours Computer Science or Honours Computing & Computer Electronics program and permission of both the department and the instructor.
+
+CP400: Special Topics
+A detailed examination of a field or topic of interest not covered by the regular program. Irregular Course
+3 lecture hours
+Credit: 0.50
+Prerequisite: Permission of the Department
+
+CP411: Computer Graphics
+The principles, algorithms, and techniques of computer graphics. Topics include introduction to graphics hardware, output primitives, two- and three-dimensional geometric transformations, three-dimensional object representation and viewing, illumination models and surface-rendering methods. Graphics software tools will be introduced in this course.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP264 (or CP114 and CP217) and MA122
+
+CP412: Algorithm Design and Analysis II
+A continuation of the study of computer algorithms. Amortized analysis, on-line and off-line algorithms, randomized algorithms, dynamic programming.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP312; and CP214 or MA238
+
+CP414: Foundations of Computing
+Deterministic and nondeterministic finite automata (DFAs and NFAs), regular expressions, context-free grammars, relationship of push-down automata and context-free grammars, definintion of the classes P and NP, NP-completeness (Cook's Theorem), standard NP-complete problems, reduction techniques, Turing machines, the halting problem.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP312; and CP214 or MA238
+
+CP421: Data Mining
+The course is aimed at an entry level study of information retrieval and data mining techniques. It is about how to find relevant information and subsequently extract meaningful patterns out of it. While the basic theories and mathematical models of information retrieval and data mining are covered, the course is primarily focused on practical algorithms of textual document indexing, relevance ranking, web usage mining, text analytics, as well as their performance evaluations. At the end of the course student are expected to understand the following: 1. The common algorithms and techniques for information retrieval (document indexing and retrieval, query processing, etc). 2. The quantitative evaluation methods for the IR systems and data mining techniques. 3. The popular probabilistic retrieval methods and ranking principles. 4. The techniques and algorithms existing in practical retrieval and data mining systems such as those in web search engines and recommender systems. 5. The challenges and existing techniques for the emerging topics of MapReduce, portfolio retrieval and online advertising.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP312, CP317
+
+CP422: Programming for Big Data
+The explosion of social media and the computerization of every aspect of social and economic activity resulted in creation of large volumes of mostly unstructured data: web logs, videos, speech recordings, photographs, e-mails, Tweets, and similar data. The key objective of this course is to familiarize the students with key information technologies used in manipulating, storing, and analyzing big data. We look at the basic tools for statistical analysis, R and Python, and some key methods of machine learning. We review MapReduce techniques for parallel processing, Hadoop, an open source framework for running MapReduce on Internet scale problems and HDFS, Hadoop's Distributed File System. We teach Spark which emerged as the most important big data processing framework. We touch on tools that provide SQL-like access to unstructured data like Hive. We analyze so-called NoSQL storage solutions exemplified by Cassandra for their critical features: speed of reads and writes, and ability to scale to extreme volumes. We examine memory resident databases (VoltDB, SciDB) and graph databases (Ne4J). Students gain the ability to initiate and design highly scalable systems that can accept, store, and analyze large volumes of unstructured data in batch mode and/or real time. Most lectures are presented using Java examples. Some lectures use Python and R.
+3 lecture/discussion hours
+Credit: 0.50
+Prerequisite: CP317
+
+CP423: Text Retrieval and Search Engines
+Recent years have seen a dramatic growth of natural language text data, including web pages, news articles, scientific literature, emails, enterprise documents, and social media such as blog articles, forum posts, product reviews, and tweets. Text data are unique in that they are usually generated directly by humans rather than a computer system or sensors, and are thus especially valuable for discovering knowledge about people's opinions and preferences, in addition to many other kinds of knowledge that we encode in text. This course will cover search engine technologies, which play an important role in any data mining applications involving text data for two reasons. First, while the raw data may be large for any particular problem, it is often a relatively small subset of the data that are relevant, and a search engine is an essential tool for quickly discovering a small subset of relevant text data in a large text collection. Second, search engines are needed to help analysts interpret any patterns discovered in the data by allowing them to examine the relevant original text data to make sense of any discovered pattern. You will learn the basic concepts, principles, and the major techniques in text retrieval, which is the underlying science of search engines.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP317
+Corequisite: CP476
+
+CP431: Parallel Programming
+Parallel computers, or supercomputers or high-performance clusters are ubiquitous today in Science and Engineering. Parallel programming requires inventing new algorithms and programming techniques. This course will cover the fundamental paradigms of parallel programming, with an emphasis on problem solving and actual applications. The parallel programming concepts and algorithms will be illustrated via implementations in OpenMP and MPI (Message Passing Interface), as well as serial farming.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP264 (proficiency in C is the only actual prerequisite) (or CP217)
+Exclusion: CP331, CP400N
+
+CP460: Applied Cryptography
+Algorithms and issues in applied cryptography. Topics include history of cryptography, block ciphers, stream ciphers, public-key encryption, digital signatures, and key management. Also, discussions of current issues in information security.
+3 lecture hours
+Credit: 0.50
+Prerequisite: (MA120 or MA121 or CP214); [CP213 or CP264 or (CP104 and a 0.5 MA credit at the 200 level and permission of the department)]
+
+CP463: Simulation
+Discrete and continuous simulations, queuing theory.
+3 lecture hours
+Credit: 0.50
+Prerequisite: ST230 (or MA240 or equivalent), CP213
+
+CP464: Selected Topics in Computer Hardware
+Topics may include computer classes and evolution, instruction set design, hardwired sequencer design, microprogramming, memory hierarchies, concurrency, multiple-processor systems, and fault-tolerant systems. Students will be required to design and build a computer, including the design of the instruction set and the control unit.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP316 and CP31NINE/PC31NINE
+
+CP465: Database II
+This course covers advanced database management system design principles and techniques. Possible topics include access methods, query processing and optimization, transaction processing, distributed databases, deductive databases, object-relational databases, data warehousing, data mining, Web and semistructured data, search engines, etc.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP363
+
+CP467: Image Processing & Pattern Recognition
+Introduction to vision systems for image acquisition and display. Comprehensive coverage of image enhancement, segmentation, feature extraction and classification.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP213, ST230 (or equivalent)
+
+CP468: Artificial Intelligence
+Examination of current concepts and techniques in artificial intelligence and machine learning. Topics include knowledge representation, automated reasoning, machine learning and knowledge-based systems. Extensive use of case studies and current applications.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP213
+
+CP46NINE: iPhone Application Programming
+Programming applications for the iPhone, iPad, and iPod platforms, using the Cocoa Touch framework on Mac OSX. Introduction to the programming language Objective-C. Interface development for mobile devices and dealing with different input modalities, web services, and memory management for mobile devices.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP317 and Registration status: Year 4 of an Honours Computer Science or Honours Computing and Computer Electronics program.
+
+CP470: Android Programming
+How to write applications for the Android mobile devices using the Android Development Tools. Developing software with the Model-View-Controller paradigm. Knowledge of Java is required. The course project will be the development of an Android app.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP213, CP317
+Exclusion: CP400Q
+
+CP471: Introduction to Compiling
+Principles and design techniques for compilers. Compiler organization, compiler writing tools, scanning, parsing, semantic analysis, run-time storage organization, memory management, code generation and optimization. Students implement a substantial portion of a compiler in a project.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP213 or CP264, CP216
+
+CP472: Programming Languages
+Overview of programming languages, virtual machines, history of programming languages, programming language semantics, programming language design, introduction to language translation, declarations and types, abstraction mechanism, functional programming, logic programming, object-oriented programming.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP213 or CP264 (or CP217)
+
+CP476: Internet Computing
+The architecture of the Internet. Client-server programming, technologies of the web (URLs, HTML, HTTP, applets, etc.) Introduction to building web applications and server-side programming.
+Credit: 0.50
+Prerequisite: CP363, and either CP372 (co-requisite) or CP364
+Corequisite: CP372
+	
+CP480: Wireless Communication & Networks
+This course introduces fundamental concepts of wireless networks. Topics include wireless communication overview, physical layer, wireless concepts and protocols including TCP over wireless; cellular standards, WIFI WIMax, and Bluetooth standards; applications such as personal area networks and sensor networks; other issues such as mobile communication security.
+3 lecture hours, 1.5 lab hours
+Credit: 0.50
+Prerequisite: CP213, CP372 or CP364/PC364.
+Exclusion: CP400P.
+
+CP4NINE3: Directed Research Project I
+An in-depth investigation of a computer science subject under faculty supervision, including the submission of a final report. Irregular course.
+3 lecture hours
+Credit: 0.50
+Prerequisite: Registration status: Year 4 Honours Computing and Computer Electronics, or Computer Science, and permission of the department
+
+CP4NINE4: Directed Research Project II
+An in-depth investigation of a computer science subject under faculty supervision, including the submission of a formal report. Irregular course.
+3 lecture hours
+Credit: 0.50
+Prerequisite: CP4NINE3 and permission of the Department.
+
+CP4NINE5: Directed Studies
+A detailed study of an aspect of computer science or computer electronics not available through the regular program.
+Prerequisite: Registration status: Year 4 Honours Computer Science or Honours Computing & Computer Electronics and permission of both the department and the instructor.
