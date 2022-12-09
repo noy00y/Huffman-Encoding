@@ -15,7 +15,15 @@ void size_check(ifstream& file) {
     return;
 }
 
-void remove();
+void remove(ifstream& fileIn, ofstream& fileOut) {
+    char next;
+    fileIn.get(next);
+    
+    do {
+        cout << "Char: " << next << endl;
+        fileIn.get(next);
+    } while (!fileIn.get(next));
+}
 
 // Driver Code:
 int main(){
@@ -28,7 +36,7 @@ int main(){
     size_check(fileIn);
 
     // Remove all required characters from the file:
-    
+    remove(fileIn, fileOut);
 
     return 0;
 }
