@@ -37,6 +37,15 @@ vector<string> get_lines(string file_name) {
 
 void remove(vector<string> lines) {
     cout << "Removing white spaces" << endl;
+    for (int i = 0; i < lines.size(); i++) {
+        string line = lines[i];
+        for (int q = 0; q < line.size(); q++) {
+            // Eval Each Condition:
+            
+        }
+        cout << endl;
+    }
+    return;
 }
 
 // Driver Code:
@@ -44,7 +53,7 @@ int main(){
     string file_name = "input.txt"; // Declarations:
     size_check(file_name);// Check File Size:
     vector<string> lines = get_lines(file_name); // Get Lines from File
-    
+    remove(lines);
 
     return 0;
 }
