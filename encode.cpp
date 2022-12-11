@@ -5,13 +5,13 @@
 #include <cctype>
 #include <algorithm>
 #include <map>
+#include <iterator>
 using namespace std;
 
 // Public Stuff:
 vector<char> convert = {'\t', '\v', '\r', '\n'};
 vector<char> other = {'.', ',', ' '};
 map<char, int> frequencies;
-// frequencies['line[q]']++;
 
 // Functions:
 void size_check(string file_name) {
@@ -55,19 +55,23 @@ vector<char> create_lines(vector<string> lines) {
             if (isalpha(line[q])) {
                 if (isupper(line[q])) {line[q] = tolower(line[q]);}
                 copy.push_back(line[q]);
+                frequencies[line[q]]++;
             }
             // Number Condition --> Push
             else if (isdigit(line[q])) {
                 copy.push_back(line[q]);
+                frequencies[line[q]]++;
             }
             // Whitespace condition --> Convert
             else if (count(convert.begin(), convert.end(), line[q])) {
                 line[q] = ' ';
                 copy.push_back(line[q]);
+                frequencies[line[q]]++;
             }
             // Other Characters
             else if (count(other.begin(), other.end(), line[q])) {
                 copy.push_back(line[q]);
+                frequencies[line[q]]++;
             }
             // Check Ignored
             // else {cout << line[q];}
@@ -77,15 +81,18 @@ vector<char> create_lines(vector<string> lines) {
     return copy;
 }
 
-
-
 // Driver Code:
 int main(){
     string file_name = "input.txt"; // Declarations:
     size_check(file_name);// Check File Size:
     vector<string> lines = get_lines(file_name); // Get Lines from File
     vector<char> copy = create_lines(lines); // using this char copy we will create a bin file from the converted accii characters (binary)
-    
+
+    map<char, int>::iterator it;
+    for (it = frequencies.begin(); it != frequencies.end(); ++it) {
+        cout << it->first << ": " << it->second;
+        cout << endl;
+    }
 
     return 0;
 }
