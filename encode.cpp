@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <map>
 #include <iterator>
+#include <typeinfo>
 using namespace std;
 
 // Public Stuff:
@@ -41,12 +42,8 @@ vector<string> get_lines(string file_name) {
     return lines;
 }
 
-// vector<string> set_lines(string file_name) {
-//     return;
-// }
-
 vector<char> create_lines(vector<string> lines) {
-    cout << "Removing white spaces" << endl;
+    cout << "Filtering" << endl;
     vector<char> copy;
     for (int i = 0; i < lines.size(); i++) {
         string line = lines[i];
@@ -81,6 +78,14 @@ vector<char> create_lines(vector<string> lines) {
     return copy;
 }
 
+void set_lines(string line, string file_name) {
+    ofstream file;
+    file.open(file_name, std::ios_base::app);
+    file << line << "\n";
+    file.close();
+    return;
+}
+
 // Driver Code:
 int main(){
     string file_name = "input.txt"; // Declarations:
@@ -88,11 +93,14 @@ int main(){
     vector<string> lines = get_lines(file_name); // Get Lines from File
     vector<char> copy = create_lines(lines); // using this char copy we will create a bin file from the converted accii characters (binary)
 
-    map<char, int>::iterator it;
-    for (it = frequencies.begin(); it != frequencies.end(); ++it) {
-        cout << it->first << ": " << it->second;
-        cout << endl;
-    }
+
+    // Create frequencies.txt:
+    map<char, int>::iterator itr;
+    for (itr = frequencies.begin(); itr != frequencies.end(); ++itr) {
+        string c(1, itr->first);
+        string n = to_string(itr->second);
+        set_lines(c + ": " +  n, "frequency.txt");
+    }    
 
     return 0;
 }
