@@ -4,11 +4,14 @@
 #include <fstream>
 #include <cctype>
 #include <algorithm>
+#include <map>
 using namespace std;
 
 // Public Stuff:
 vector<char> convert = {'\t', '\v', '\r', '\n'};
 vector<char> other = {'.', ',', ' '};
+map<char, int> frequencies;
+// frequencies['line[q]']++;
 
 // Functions:
 void size_check(string file_name) {
@@ -74,13 +77,15 @@ vector<char> create_lines(vector<string> lines) {
     return copy;
 }
 
+
+
 // Driver Code:
 int main(){
     string file_name = "input.txt"; // Declarations:
     size_check(file_name);// Check File Size:
     vector<string> lines = get_lines(file_name); // Get Lines from File
     vector<char> copy = create_lines(lines); // using this char copy we will create a bin file from the converted accii characters (binary)
-
+    
 
     return 0;
 }
