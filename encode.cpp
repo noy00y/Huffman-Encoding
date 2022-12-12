@@ -17,11 +17,81 @@ vector<char> alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n'
 vector<char> numbers = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 map<char, int> frequencies;
 
+
+// Utils:
+void size_check(string file_name) {
+    ifstream file(file_name, ios::binary);
+    file.seekg(0, ios::end);
+    int file_size = file.tellg();
+    if (file_size > 100000) {
+        cout << "File size exceeds maximum input of 100 KB" << endl;
+        throw invalid_argument("File size exceeds maximum input of 100 KB");
+    }else {cout << "File size within 100 KB limit" << endl;}
+    return;
+}
+
+vector<string> get_lines(string file_name) {
+    fstream file;
+    vector<string> lines;
+    file.open(file_name, ios::in);
+
+    if (file.is_open()) {
+        string line;
+        while (getline(file, line)) {
+            lines.push_back(line);
+        }
+    }
+    file.close();
+    return lines;
+}
+
+vector<char> create_lines(vector<string> lines) {
+    vector<char> copy;
+    for (int i = 0; i < lines.size(); i++) {
+        string line = lines[i];
+        for (int q = 0; q < line.size(); q++) {
+            // Eval Each Condition --> Confirm lowercase and push
+            if (isalpha(line[q])) {
+                if (isupper(line[q])) {line[q] = tolower(line[q]);}
+                copy.push_back(line[q]);
+                frequencies[line[q]]++;
+            }
+            // Number Condition --> Push
+            else if (isdigit(line[q])) {
+                copy.push_back(line[q]);
+                frequencies[line[q]]++;
+            }
+            // Whitespace condition --> Convert
+            else if (count(convert.begin(), convert.end(), line[q])) {
+                line[q] = ' ';
+                copy.push_back(line[q]);
+                frequencies[line[q]]++;
+            }
+            // Other Characters
+            else if (count(other.begin(), other.end(), line[q])) {
+                copy.push_back(line[q]);
+                frequencies[line[q]]++;
+            }
+            // Check Ignored
+            // else {cout << line[q];}
+        }
+    }
+    return copy;
+}
+
+void set_lines(string line, string file_name) {
+    ofstream file;
+    file.open(file_name, std::ios_base::app);
+    file << line << "\n";
+    file.close();
+    return;
+}
+
+
 // Structures and their methods:
 struct Node {
     char data;
     int frequency;
-    string binary_code;
     struct Node *right, *left;
 };
 
@@ -118,6 +188,22 @@ Node *build_tree(Heap *heap) {
     return pop(heap);
 }
 
+void assign_codes(Node *node, char arr[], int index) {
+    cout << node->data << ": ";
+    string temp = "";
+    for (int i = 0; i < index; ++i) {
+        // cout << arr[i];
+        temp.push_back(arr[i]);
+    }
+    cout << temp << endl;
+    string c(1, node->data);
+
+    set_lines(c + ":" + temp, "codes.txt");
+    return;
+}
+
+// string c(1, itr->first); // character
+// string n = to_string(itr->second); // frequency
 
 void create_codes(Node *root, char arr[], int index) {
     if (root->left) {
@@ -129,81 +215,8 @@ void create_codes(Node *root, char arr[], int index) {
         create_codes(root->right, arr, index + 1);
     }
     if (!(root->left) && !(root->right)) {
-        cout << root->data << ": ";
-        int i;
-        for (i = 0; i < index; ++i)
-            cout << arr[i];
-        cout << endl;
+        assign_codes(root, arr, index);
     }
-    return;
-}
-
-// Utils:
-void size_check(string file_name) {
-    ifstream file(file_name, ios::binary);
-    file.seekg(0, ios::end);
-    int file_size = file.tellg();
-    if (file_size > 100000) {
-        cout << "File size exceeds maximum input of 100 KB" << endl;
-        throw invalid_argument("File size exceeds maximum input of 100 KB");
-    }else {cout << "File size within 100 KB limit" << endl;}
-    return;
-}
-
-vector<string> get_lines(string file_name) {
-    fstream file;
-    vector<string> lines;
-    file.open(file_name, ios::in);
-
-    if (file.is_open()) {
-        string line;
-        while (getline(file, line)) {
-            lines.push_back(line);
-        }
-    }
-    file.close();
-    return lines;
-}
-
-vector<char> create_lines(vector<string> lines) {
-    vector<char> copy;
-    for (int i = 0; i < lines.size(); i++) {
-        string line = lines[i];
-        for (int q = 0; q < line.size(); q++) {
-            // Eval Each Condition --> Confirm lowercase and push
-            if (isalpha(line[q])) {
-                if (isupper(line[q])) {line[q] = tolower(line[q]);}
-                copy.push_back(line[q]);
-                frequencies[line[q]]++;
-            }
-            // Number Condition --> Push
-            else if (isdigit(line[q])) {
-                copy.push_back(line[q]);
-                frequencies[line[q]]++;
-            }
-            // Whitespace condition --> Convert
-            else if (count(convert.begin(), convert.end(), line[q])) {
-                line[q] = ' ';
-                copy.push_back(line[q]);
-                frequencies[line[q]]++;
-            }
-            // Other Characters
-            else if (count(other.begin(), other.end(), line[q])) {
-                copy.push_back(line[q]);
-                frequencies[line[q]]++;
-            }
-            // Check Ignored
-            // else {cout << line[q];}
-        }
-    }
-    return copy;
-}
-
-void set_lines(string line, string file_name) {
-    ofstream file;
-    file.open(file_name, std::ios_base::app);
-    file << line << "\n";
-    file.close();
     return;
 }
 
@@ -236,10 +249,12 @@ int main(){
         string c(1, itr->first); // character
         string n = to_string(itr->second); // frequency
 
-        // Create node:
+        // Create node and push to heap
         heap->array[counts] = create_node(itr->second);
         heap->array[counts]->data = itr->first;
         ++counts;
+
+        // set_lines(c + ":" +  n, "frequency.txt");
     }
     heap->size = 39;
     build_heap(heap);    
