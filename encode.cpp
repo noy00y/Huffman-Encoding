@@ -18,35 +18,7 @@ vector<char> numbers = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 map<char, int> frequencies;
 
 // Classes:
-class Node {
-public:
-    char data; // leaf node 
-    int frequency; // frequency of node
-    string binary_code; // leaf node
-    Node *right, *left;
 
-public:
-    // Constructor:
-    Node(){return;}
-
-    Node(int f) {
-        frequency = f;
-    }
-    void set_data(char d) {
-        data = d;
-    }
-    void set_code(string c) {
-        binary_code = c;
-    }
-};
-
-class Compare {
-public:
-    int operator() (const Node& p1, const Node& p2)
-    {
-        return p2.frequency < p1.frequency;
-    }
-};
 
 // Functions:
 void size_check(string file_name) {
@@ -119,43 +91,7 @@ void set_lines(string line, string file_name) {
     return;
 }
 
-Node build_tree(priority_queue <Node, vector<Node>, Compare> heap) {
-    
-    Node *root, *left, *right; // Initialize top node with 0 frequency
 
-    while (heap.size() > 1)
-    {
-        // Pop off 2 of the smallest nodes and compare
-        Node L = heap.top();heap.pop();
-        Node R = heap.top();heap.pop();
-        left = &L;
-        right = &R;
-
-        // cout << a.data << ": " << a.frequency << endl;
-        // cout << b.data << ": " << b.frequency << endl;
-        // cout << "-----" << endl;
-        
-        // Merge Nodes:
-        Node temp = Node(left->frequency + right->frequency); // create node with combined frequency
-        root = &temp;
-        root->left = left;
-        root->right = right;
-        heap.push(*root);
-    }
-    return *root;
-}
-
-void printTree(Node* root) {
-    cout << "printing"<< endl;
-    if (root == NULL) {
-        cout << "return" << endl;
-        return;
-    }
-    printTree(root->left);
-    cout << "Frequency: " << root->frequency << endl;
-    printTree(root->right);
-    return;
-}
 
 // Driver Code:
 int main(){
