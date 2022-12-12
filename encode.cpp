@@ -24,17 +24,23 @@ struct Node {
     string binary_code;
     struct Node *right, *left;
 
+    // Constructor:
+    Node(char d, int f) {
+        data = d;
+        frequency = f;
+        right = NULL;
+        left = NULL;
+    }
+
+    Node(int f) {
+        frequency = f;
+        right = NULL;
+        left = NULL;
+    }
+
     // Comparison Operator for Queue
     bool operator<(const Node& node) const {return frequency > node.frequency;} 
 };
-
-// struct Node* new_node(char data, int frequency) {
-//     Node *node = (Node*)malloc(sizeof(Node));
-//     node->left = node->right = NULL;
-//     node->data = data;
-//     node->frequency = frequency;
-//     return node;
-// }
 
 // Functions:
 void size_check(string file_name) {
