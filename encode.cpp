@@ -111,6 +111,29 @@ void set_lines(string line, string file_name) {
     return;
 }
 
+Node build_tree(priority_queue <Node> heap) {
+    cout << "build tree" << endl;
+    while (heap.size() > 1) {
+        Node left = heap.top(); heap.pop();
+        Node right = heap.top(); heap.pop();
+        Node root = {left.frequency + right.frequency};
+        root.left = &left;
+        root.right = &right;
+        cout << "Root: " << root.frequency;
+        cout << ", Right: " << right.data;
+        cout << ", Left: " << left.data << endl;
+        heap.push(root);
+    }
+    Node root = heap.top(); heap.pop();
+    cout << "Final Root: " << root.frequency << endl;
+    return root;
+}
+
+void printTree(Node node) {
+    cout << node.right->frequency << endl;
+    return;
+}
+
 // Driver Code:
 int main(){
     // Declarations
@@ -148,13 +171,13 @@ int main(){
         // set_lines(c + ":" +  n, "frequency.txt");
     }    
     cout << "--------------------------------------------" << endl;
-    while (heap.empty() == false) {
-        Node node = heap.top();
-        cout << node.data << ": " << node.frequency << endl;
-        heap.pop();
-    }
+    // while (heap.empty() == false) {
+    //     Node node = heap.top();
+    //     cout << node.data << ": " << node.frequency << endl;
+    //     heap.pop();
+    // }
 
     // Build Huffman Tree:
-    // Node root = build_tree(heap);
-    // printTree(&root);
+    Node root = build_tree(heap);
+    printTree(root);
 }
