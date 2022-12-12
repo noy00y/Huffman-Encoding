@@ -254,7 +254,7 @@ int main(){
         heap->array[counts]->data = itr->first;
         ++counts;
 
-        // set_lines(c + ":" +  n, "frequency.txt");
+        set_lines(c + ":" +  n, "frequency.txt");
     }
     heap->size = 39;
     build_heap(heap);    
