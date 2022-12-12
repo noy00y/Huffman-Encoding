@@ -17,8 +17,24 @@ vector<char> alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n'
 vector<char> numbers = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 map<char, int> frequencies;
 
-// Classes:
+// Structures:
+struct Node {
+    char data;
+    int frequency;
+    string binary_code;
+    struct Node *right, *left;
 
+    // Comparison Operator for Queue
+    bool operator<(const Node& node) const {return frequency > node.frequency;} 
+};
+
+// struct Node* new_node(char data, int frequency) {
+//     Node *node = (Node*)malloc(sizeof(Node));
+//     node->left = node->right = NULL;
+//     node->data = data;
+//     node->frequency = frequency;
+//     return node;
+// }
 
 // Functions:
 void size_check(string file_name) {
@@ -33,7 +49,6 @@ void size_check(string file_name) {
 }
 
 vector<string> get_lines(string file_name) {
-    cout << "Getting Lines from file" << endl;
     fstream file;
     vector<string> lines;
     file.open(file_name, ios::in);
@@ -49,7 +64,6 @@ vector<string> get_lines(string file_name) {
 }
 
 vector<char> create_lines(vector<string> lines) {
-    cout << "Filtering" << endl;
     vector<char> copy;
     for (int i = 0; i < lines.size(); i++) {
         string line = lines[i];
@@ -91,13 +105,11 @@ void set_lines(string line, string file_name) {
     return;
 }
 
-
-
 // Driver Code:
 int main(){
     // Declarations
     string file_name = "input.txt"; // Input File name
-    size_check(file_name);// Check File Size:
+    size_check(file_name); // Check File Size:
     vector<string> lines = get_lines(file_name); // Get Lines from File
 
     // Create frequencies.txt:
@@ -116,24 +128,27 @@ int main(){
 
     vector<char> copy = create_lines(lines); // using this char copy we will create a bin file from the converted accii characters (binary)
 
-    priority_queue <Node, vector<Node>, Compare> heap; // Create Heap
+    priority_queue <Node> heap; // Create Heap
     // Create filtered copy of text:
     for (itr = frequencies.begin(); itr != frequencies.end(); ++itr) { // Loop and add to file
         string c(1, itr->first); // character
         string n = to_string(itr->second); // frequency
 
         // Create node:
-        Node node = Node(itr->second);
-        node.data = itr->first;
-
+        Node node = {itr->first, itr->second};
         // cout << node.data << ": " << node.frequency << endl;
         heap.push(node);
-
         // Print to frequency file
         // set_lines(c + ":" +  n, "frequency.txt");
     }    
+    cout << "--------------------------------------------" << endl;
+    while (heap.empty() == false) {
+        Node node = heap.top();
+        cout << node.data << ": " << node.frequency << endl;
+        heap.pop();
+    }
 
     // Build Huffman Tree:
-    Node root = build_tree(heap);
-    printTree(&root);
+    // Node root = build_tree(heap);
+    // printTree(&root);
 }

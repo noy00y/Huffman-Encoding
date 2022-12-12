@@ -53,6 +53,7 @@
         "xutility": "cpp",
         "map": "cpp",
         "xtree": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "queue": "cpp"
     }
 }
