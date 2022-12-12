@@ -17,38 +17,128 @@ vector<char> alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n'
 vector<char> numbers = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 map<char, int> frequencies;
 
-// Classes:
-class Node {
-public:
-    char data; // leaf node 
-    int frequency; // frequency of node
-    string binary_code; // leaf node
-    Node *right, *left;
-
-public:
-    // Constructor:
-    Node(){return;}
-
-    Node(int f) {
-        frequency = f;
-    }
-    void set_data(char d) {
-        data = d;
-    }
-    void set_code(string c) {
-        binary_code = c;
-    }
+// Structures and their methods:
+struct Node {
+    char data;
+    int frequency;
+    string binary_code;
+    struct Node *right, *left;
 };
 
-class Compare {
-public:
-    int operator() (const Node& p1, const Node& p2)
-    {
-        return p2.frequency < p1.frequency;
-    }
+Node *create_node(int frequency) {
+    Node *node = (Node*)malloc(sizeof(Node));
+    node->frequency = frequency;
+    node->right = node->left = NULL;
+    return node;
+}
+
+struct Heap {
+    int size;
+    int capacity;
+    struct Node** array;
 };
+
+Heap *create_heap(int capaacity) {
+    Heap *heap = (Heap*)malloc(sizeof(Heap));
+    heap->size = 0;
+    heap->capacity = capaacity;
+    heap->array = (struct Node**)malloc(heap->capacity * sizeof(Node*));
+    return heap;
+}
+
 
 // Functions:
+void swap(Node** a, Node** b) {
+    Node* temp = *a;
+    *a = *b;
+    *b = temp;
+    return;
+}
+
+void heapify(Heap *heap, int index) {
+    int smallest = index;
+    int left = 2 * index + 1; // get left node
+    int right = 2 * index + 2; // get right node
+ 
+    // If left child smaller then "smallest" node --> set left child to smallest
+    if (left < heap->size && heap->array[left]->frequency < heap->array[smallest]->frequency) {smallest = left;}
+ 
+    // If right child smaller then "smallest" node --> set right child to smallest
+    if (right < heap->size && heap->array[right]->frequency < heap->array[smallest]->frequency) {smallest = right;}
+ 
+    // If root node is not the smallest --> swap with smallest
+    if (smallest != index) {
+        swap(&heap->array[smallest], &heap->array[index]);
+        heapify(heap, smallest); // heapify again with new root
+    }
+    return;
+}
+
+void insert(Heap *heap, Node *node) {
+    ++heap->size; // increment heap size
+    int i = heap->size - 1; // index --> leaf node
+    // While node frequenecy less then parent node frequency
+    while (i && node->frequency < heap->array[(i - 1) / 2]->frequency) {
+        heap->array[i] = heap->array[(i - 1) / 2]; // set parent as leaf index
+        i = (i - 1) / 2; // change index
+    }
+    heap->array[i] = node; // set node at index
+    return;
+}
+
+void build_heap(Heap *heap) {
+    int n = heap->size - 1;
+    int i;
+
+    // Heapify at each parent node
+    for (i = (n - 1) / 2; i >= 0; --i) {
+        heapify(heap, i);
+    }
+    return;
+}
+
+Node *pop(Heap *heap) {
+    Node* node = heap->array[0]; // get min node from heap
+    heap->array[0] = heap->array[heap->size - 1]; // set root as a leaf node
+    --heap->size; // Decrement size of heap
+    heapify(heap, 0);
+    return node;
+}
+
+Node *build_tree(Heap *heap) {
+    Node *left, *right, *root;
+    while (heap->size > 1) {
+        left = pop(heap);
+        right = pop(heap);
+        root = create_node(left->frequency + right->frequency);
+        root->left = left;
+        root->right = right;
+        insert(heap, root);
+    }
+    return pop(heap);
+}
+
+
+void create_codes(Node *root, char arr[], int index) {
+    if (root->left) {
+        arr[index] = '0';
+        create_codes(root->left, arr, index + 1);
+    }
+    if (root->right) {
+        arr[index] = '1';
+        create_codes(root->right, arr, index + 1);
+    }
+    if (!(root->left) && !(root->right)) {
+        cout << root->data << ": ";
+        int i;
+        for (i = 0; i < index; ++i)
+            cout << arr[i];
+        cout << endl;
+    }
+    return;
+}
+
+// Utils:
 void size_check(string file_name) {
     ifstream file(file_name, ios::binary);
     file.seekg(0, ios::end);
@@ -61,7 +151,6 @@ void size_check(string file_name) {
 }
 
 vector<string> get_lines(string file_name) {
-    cout << "Getting Lines from file" << endl;
     fstream file;
     vector<string> lines;
     file.open(file_name, ios::in);
@@ -77,7 +166,6 @@ vector<string> get_lines(string file_name) {
 }
 
 vector<char> create_lines(vector<string> lines) {
-    cout << "Filtering" << endl;
     vector<char> copy;
     for (int i = 0; i < lines.size(); i++) {
         string line = lines[i];
@@ -119,49 +207,11 @@ void set_lines(string line, string file_name) {
     return;
 }
 
-Node build_tree(priority_queue <Node, vector<Node>, Compare> heap) {
-    
-    Node *root, *left, *right; // Initialize top node with 0 frequency
-
-    while (heap.size() > 1)
-    {
-        // Pop off 2 of the smallest nodes and compare
-        Node L = heap.top();heap.pop();
-        Node R = heap.top();heap.pop();
-        left = &L;
-        right = &R;
-
-        // cout << a.data << ": " << a.frequency << endl;
-        // cout << b.data << ": " << b.frequency << endl;
-        // cout << "-----" << endl;
-        
-        // Merge Nodes:
-        Node temp = Node(left->frequency + right->frequency); // create node with combined frequency
-        root = &temp;
-        root->left = left;
-        root->right = right;
-        heap.push(*root);
-    }
-    return *root;
-}
-
-void printTree(Node* root) {
-    cout << "printing"<< endl;
-    if (root == NULL) {
-        cout << "return" << endl;
-        return;
-    }
-    printTree(root->left);
-    cout << "Frequency: " << root->frequency << endl;
-    printTree(root->right);
-    return;
-}
-
 // Driver Code:
 int main(){
     // Declarations
     string file_name = "input.txt"; // Input File name
-    size_check(file_name);// Check File Size:
+    size_check(file_name); // Check File Size:
     vector<string> lines = get_lines(file_name); // Get Lines from File
 
     // Create frequencies.txt:
@@ -179,25 +229,24 @@ int main(){
     }
 
     vector<char> copy = create_lines(lines); // using this char copy we will create a bin file from the converted accii characters (binary)
-
-    priority_queue <Node, vector<Node>, Compare> heap; // Create Heap
     // Create filtered copy of text:
+    Heap *heap = create_heap(39);
+    int counts = 0;
     for (itr = frequencies.begin(); itr != frequencies.end(); ++itr) { // Loop and add to file
         string c(1, itr->first); // character
         string n = to_string(itr->second); // frequency
 
         // Create node:
-        Node node = Node(itr->second);
-        node.data = itr->first;
-
-        // cout << node.data << ": " << node.frequency << endl;
-        heap.push(node);
-
-        // Print to frequency file
-        // set_lines(c + ":" +  n, "frequency.txt");
-    }    
+        heap->array[counts] = create_node(itr->second);
+        heap->array[counts]->data = itr->first;
+        ++counts;
+    }
+    heap->size = 39;
+    build_heap(heap);    
+    cout << "--------------------------------------------" << endl;
 
     // Build Huffman Tree:
-    Node root = build_tree(heap);
-    printTree(&root);
+    Node *root = build_tree(heap);
+    char arr[100];
+    create_codes(root, arr, 0);
 }
