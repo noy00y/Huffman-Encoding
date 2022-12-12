@@ -16,6 +16,21 @@ vector<char> alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n'
 vector<char> numbers = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 map<char, int> frequencies;
 
+// Structures:
+struct Node {
+    char data; 
+    int frequency;
+    string binary_code;
+    struct Node *left, *right;
+
+    // Constructor
+    Node(int freq) {
+        frequency = freq;
+    }  
+};
+
+
+
 // Functions:
 void size_check(string file_name) {
     ifstream file(file_name, ios::binary);
@@ -95,7 +110,6 @@ int main(){
 
     // Create frequencies.txt:
     map<char, int>::iterator itr;
-    vector<string> frequency_lines;
 
     // Initialize the frequencies:
     for (int i = 0; i < other.size(); i++) {
@@ -107,6 +121,8 @@ int main(){
     for (int i = 0; i < numbers.size(); i++) {
         frequencies[numbers[i]] = 0;
     }
+
+    // Create filtered copy of text
     vector<char> copy = create_lines(lines); // using this char copy we will create a bin file from the converted accii characters (binary)
     for (itr = frequencies.begin(); itr != frequencies.end(); ++itr) { // Loop and add to file
         string c(1, itr->first);
