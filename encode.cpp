@@ -17,7 +17,7 @@ vector<char> alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n'
 vector<char> numbers = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 map<char, int> frequencies;
 
-// Class:
+// Classes:
 class Node {
 public:
     char data; // leaf node 
@@ -27,6 +27,8 @@ public:
 
 public:
     // Constructor:
+    Node(){return;}
+
     Node(int f) {
         frequency = f;
     }
@@ -45,7 +47,6 @@ public:
         return p2.frequency < p1.frequency;
     }
 };
-
 
 // Functions:
 void size_check(string file_name) {
@@ -118,6 +119,44 @@ void set_lines(string line, string file_name) {
     return;
 }
 
+Node build_tree(priority_queue <Node, vector<Node>, Compare> heap) {
+    
+    Node *root, *left, *right; // Initialize top node with 0 frequency
+
+    while (heap.size() > 1)
+    {
+        // Pop off 2 of the smallest nodes and compare
+        Node L = heap.top();heap.pop();
+        Node R = heap.top();heap.pop();
+        left = &L;
+        right = &R;
+
+        // cout << a.data << ": " << a.frequency << endl;
+        // cout << b.data << ": " << b.frequency << endl;
+        // cout << "-----" << endl;
+        
+        // Merge Nodes:
+        Node temp = Node(left->frequency + right->frequency); // create node with combined frequency
+        root = &temp;
+        root->left = left;
+        root->right = right;
+        heap.push(*root);
+    }
+    return *root;
+}
+
+void printTree(Node* root) {
+    cout << "printing"<< endl;
+    if (root == NULL) {
+        cout << "return" << endl;
+        return;
+    }
+    printTree(root->left);
+    cout << "Frequency: " << root->frequency << endl;
+    printTree(root->right);
+    return;
+}
+
 // Driver Code:
 int main(){
     // Declarations
@@ -155,14 +194,10 @@ int main(){
         heap.push(node);
 
         // Print to frequency file
-        set_lines(c + ":" +  n, "frequency.txt");
+        // set_lines(c + ":" +  n, "frequency.txt");
     }    
-    // cout << "------------------------------------"<< endl;
-    while (heap.empty() == false)
-    {
-        Node p = heap.top();
-        cout << "(" << p.data << ": " << p.frequency << ")";
-        cout << endl;
-        heap.pop();
-    }
+
+    // Build Huffman Tree:
+    Node root = build_tree(heap);
+    printTree(&root);
 }
