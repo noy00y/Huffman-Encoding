@@ -118,16 +118,24 @@ Node *build_tree(Heap *heap) {
     return pop(heap);
 }
 
-void create_codes(Node *root) {
-    if (root == NULL) {
-        return;
+
+void create_codes(Node *root, char arr[], int index) {
+    if (root->left) {
+        arr[index] = '0';
+        create_codes(root->left, arr, index + 1);
     }
-    printTree(root->left);
-    cout << "Node Frequency: " << root->frequency << endl;
+    if (root->right) {
+        arr[index] = '1';
+        create_codes(root->right, arr, index + 1);
+    }
     if (!(root->left) && !(root->right)) {
-        cout << "Node Data --> " << root->data << ": " << root->frequency << endl;
+        cout << root->data << ": ";
+        int i;
+        for (i = 0; i < index; ++i)
+            cout << arr[i];
+        cout << endl;
     }
-    printTree(root->right);
+    return;
 }
 
 // Utils:
@@ -239,5 +247,6 @@ int main(){
 
     // Build Huffman Tree:
     Node *root = build_tree(heap);
-    create_codes(root);
+    char arr[100];
+    create_codes(root, arr, 0);
 }
