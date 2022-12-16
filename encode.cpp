@@ -16,7 +16,7 @@ vector<char> other = {'.', ',', ' '};
 vector<char> alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 vector<char> numbers = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 map<char, int> frequencies;
-
+map<char, string> codes;
 
 // Utils:
 void size_check(string file_name) {
@@ -87,7 +87,6 @@ void set_lines(string line, string file_name) {
     return;
 }
 
-
 // Structures and their methods:
 struct Node {
     char data;
@@ -115,7 +114,6 @@ Heap *create_heap(int capaacity) {
     heap->array = (struct Node**)malloc(heap->capacity * sizeof(Node*));
     return heap;
 }
-
 
 // Functions:
 void swap(Node** a, Node** b) {
@@ -197,7 +195,7 @@ void assign_codes(Node *node, char arr[], int index) {
     }
     cout << temp << endl;
     string c(1, node->data);
-
+    codes.insert({node->data, temp});
     set_lines(c + ":" + temp, "codes.txt");
     return;
 }
@@ -245,7 +243,10 @@ int main(){
     // Create filtered copy of text:
     Heap *heap = create_heap(39);
     int counts = 0;
-    for (itr = frequencies.begin(); itr != frequencies.end(); ++itr) { // Loop and add to file
+
+
+    // Loop and add to file:
+    for (itr = frequencies.begin(); itr != frequencies.end(); ++itr) { 
         string c(1, itr->first); // character
         string n = to_string(itr->second); // frequency
 
@@ -253,7 +254,6 @@ int main(){
         heap->array[counts] = create_node(itr->second);
         heap->array[counts]->data = itr->first;
         ++counts;
-
         set_lines(c + ":" +  n, "frequency.txt");
     }
     heap->size = 39;
@@ -264,4 +264,7 @@ int main(){
     Node *root = build_tree(heap);
     char arr[100];
     create_codes(root, arr, 0);
+
+    // Loop Through Codes:
+
 }
