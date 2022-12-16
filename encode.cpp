@@ -196,12 +196,9 @@ void assign_codes(Node *node, char arr[], int index) {
     cout << temp << endl;
     string c(1, node->data);
     codes.insert({node->data, temp});
-    set_lines(c + ":" + temp, "codes.txt");
+    // set_lines(c + ":" + temp, "codes.txt");
     return;
 }
-
-// string c(1, itr->first); // character
-// string n = to_string(itr->second); // frequency
 
 void create_codes(Node *root, char arr[], int index) {
     if (root->left) {
@@ -216,6 +213,24 @@ void create_codes(Node *root, char arr[], int index) {
         assign_codes(root, arr, index);
     }
     return;
+}
+
+void compress_file(vector<char> lines, map<char, string> codes) {
+    ofstream file("compressed.bin", ios::out | ios::binary);
+    if (!file) {
+        cout << "Cannot open file!" << endl;
+        return;
+    }
+    // Loop through and print to file:
+    for (int i = 0; i < lines.size(); i++) {
+        // Declarations:
+        // cout << "code: " << codes[lines[i]] << endl;
+        string code = codes[lines[i]];
+        for (int q = 0; q < code.size(); q++) {
+            const char* temp = &code[q];
+            file.write(&code[q], 1);
+        }
+    }
 }
 
 // Driver Code:
@@ -244,7 +259,6 @@ int main(){
     Heap *heap = create_heap(39);
     int counts = 0;
 
-
     // Loop and add to file:
     for (itr = frequencies.begin(); itr != frequencies.end(); ++itr) { 
         string c(1, itr->first); // character
@@ -254,7 +268,7 @@ int main(){
         heap->array[counts] = create_node(itr->second);
         heap->array[counts]->data = itr->first;
         ++counts;
-        set_lines(c + ":" +  n, "frequency.txt");
+        // set_lines(c + ":" +  n, "frequency.txt");
     }
     heap->size = 39;
     build_heap(heap);    
@@ -265,6 +279,6 @@ int main(){
     char arr[100];
     create_codes(root, arr, 0);
 
-    // Loop Through Codes:
-
+    // Create binary file:
+    compress_file(copy, codes);
 }
