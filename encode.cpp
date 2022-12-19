@@ -8,6 +8,7 @@
 #include <iterator>
 #include <typeinfo>
 #include <queue>
+#include <iomanip>
 using namespace std;
 
 // Public Stuff:
@@ -15,6 +16,7 @@ vector<char> convert = {'\t', '\v', '\r', '\n'};
 vector<char> other = {'.', ',', ' '};
 vector<char> alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 vector<char> numbers = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+vector<int> bit_array;
 map<char, int> frequencies;
 map<char, string> codes;
 
@@ -85,6 +87,46 @@ void set_lines(string line, string file_name) {
     file << line << "\n";
     file.close();
     return;
+}
+
+// Classes and their functions:
+class BitwiseWrite
+{
+private:
+    char buffer;
+    int bits;
+    ostream& out;
+public:
+    BitwiseWrite(ostream & os) : out(os),buffer(0),bits(0){} 
+    void flush(); 
+    void writeBit(int i);
+};
+
+// Write buffer to output file and clear it
+void BitwiseWrite::flush() {
+    out.put(buffer); 
+    out.flush(); 
+    buffer = bits = 0; // reset buffer and bit counter
+}
+
+// Write the bit based on its position in the buffer
+void BitwiseWrite::writeBit(int i) 
+{
+    if( i == -1){flush();} // flush the buffer if the last bit
+    if(bits == 8) {flush();} // clear buffer if full (8 bit)
+  
+    // Insert 1 into the buffer
+    unsigned char mask = 1;
+    if(i == 1) {mask = mask << (7 - bits);buffer = buffer | mask;}
+     
+    // Insert 0 into the buffer
+    if(i == 0) 
+    {
+        mask = mask << (7 - bits);
+        mask = ~mask;
+        buffer = buffer & mask;
+    } 
+    bits++; // increment bits 
 }
 
 // Structures and their methods:
@@ -187,16 +229,16 @@ Node *build_tree(Heap *heap) {
 }
 
 void assign_codes(Node *node, char arr[], int index) {
-    cout << node->data << ": ";
+    // cout << node->data << ": ";
     string temp = "";
     for (int i = 0; i < index; ++i) {
         // cout << arr[i];
         temp.push_back(arr[i]);
     }
-    cout << temp << endl;
+    // cout << temp << endl;
     string c(1, node->data);
     codes.insert({node->data, temp});
-    // set_lines(c + ":" + temp, "codes.txt");
+    set_lines(c + ":" + temp, "codes.txt");
     return;
 }
 
@@ -215,20 +257,26 @@ void create_codes(Node *root, char arr[], int index) {
     return;
 }
 
-void compress_file(vector<char> lines, map<char, string> codes) {
+void compress_file() {
+    // Create output file
     ofstream file("compressed.bin", ios::out | ios::binary);
     if (!file) {
         cout << "Cannot open file!" << endl;
         return;
     }
-    // Loop through and print to file:
-    for (int i = 0; i < lines.size(); i++) {
-        // Declarations:
-        // cout << "code: " << codes[lines[i]] << endl;
-        string code = codes[lines[i]];
+    BitwiseWrite s(file); // construct bitwise writer
+    for (int i = 0; i < bit_array.size(); i++) {
+        int bit = bit_array[i];
+        s.writeBit(bit);
+    }
+}
+
+void convertCodes(vector<char> lines) {
+    for (int i = 0; i < lines.size(); i++) { // Loop through chars
+        string code = (codes[lines[i]]);
         for (int q = 0; q < code.size(); q++) {
-            const char* temp = &code[q];
-            file.write(&code[q], 1);
+            if (code[q] == '1') {bit_array.push_back(1);}
+            else {bit_array.push_back(0);}
         }
     }
 }
@@ -236,7 +284,9 @@ void compress_file(vector<char> lines, map<char, string> codes) {
 // Driver Code:
 int main(){
     // Declarations
-    string file_name = "input.txt"; // Input File name
+    string file_name; // file name
+    cout << "Enter the name of the file: ";
+    cin >> file_name;
     size_check(file_name); // Check File Size:
     vector<string> lines = get_lines(file_name); // Get Lines from File
 
@@ -254,8 +304,7 @@ int main(){
         frequencies[numbers[i]] = 0;
     }
 
-    vector<char> copy = create_lines(lines); // using this char copy we will create a bin file from the converted accii characters (binary)
-    // Create filtered copy of text:
+    vector<char> copy = create_lines(lines); // using this char copy we will create a bin file
     Heap *heap = create_heap(39);
     int counts = 0;
 
@@ -268,7 +317,7 @@ int main(){
         heap->array[counts] = create_node(itr->second);
         heap->array[counts]->data = itr->first;
         ++counts;
-        // set_lines(c + ":" +  n, "frequency.txt");
+        set_lines(c + ":" +  n, "frequency.txt");
     }
     heap->size = 39;
     build_heap(heap);    
@@ -280,5 +329,6 @@ int main(){
     create_codes(root, arr, 0);
 
     // Create binary file:
-    compress_file(copy, codes);
+    convertCodes(copy);
+    compress_file();
 }

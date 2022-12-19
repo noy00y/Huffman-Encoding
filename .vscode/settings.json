@@ -54,6 +54,7 @@
         "map": "cpp",
         "xtree": "cpp",
         "regex": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "iomanip": "cpp"
     }
 }
